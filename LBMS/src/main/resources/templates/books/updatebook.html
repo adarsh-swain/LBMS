@@ -56,8 +56,8 @@
 						<form th:action="@{updatebook/{bookId}(bookId=${book.bookId})}" th:object="${book}" method="post">
 							<input type="hidden" th:field="*{bookId}">
 							<div class="mb-3">
-								<label for="name" class="form-label">Book Name:</label>
-								<input type="text" id="name" th:field="*{name}" class="form-control" required>
+								<label for="title" class="form-label">Book Name:</label>
+								<input type="text" id="title" th:field="*{title}" class="form-control" required>
 							</div>
 
 							<div class="mb-3">
@@ -66,14 +66,18 @@
 							</div>
 
 							<div class="mb-3">
-								<label for="price" class="form-label">Price:</label>
-								<input type="number" id="price" th:field="*{price}" class="form-control" step="0.01">
+								<label for="isbn" class="form-label">ISBN:</label>
+								<input type="text" id="isbn" th:field="*{isbn}" class="form-control">
 							</div>
-
+							
 							<div class="mb-3">
-								<label for="publishedYear" class="form-label">Published Year:</label>
-								<input type="number" id="publishedYear" th:field="*{publishedYear}"
-									class="form-control">
+								<label for="category" class="form-label">Category:</label>
+								<input type="text" id="category" th:field="*{category}" class="form-control">
+							</div>
+							
+							<div class="mb-3">
+								<label for="totalCopies" class="form-label">Total books:</label>
+								<input type="number" id="totalCopies" th:field="*{totalCopies}" class="form-control">
 							</div>
 
 							<div class="text-center">

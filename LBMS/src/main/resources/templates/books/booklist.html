@@ -7,6 +7,9 @@
 	<script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
 	<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
 	<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+	<link rel="stylesheet" href="https://cdn.datatables.net/1.13.6/css/jquery.dataTables.min.css">
+	<script src="https://cdn.datatables.net/1.13.6/js/jquery.dataTables.min.js"></script>
+
 </head>
 <style>
 	.sidebar {
@@ -50,30 +53,33 @@
 		<main id="main-content" class="p-4 w-100 main-content">
 			<div class="container mt-5">
 				<div class="d-flex justify-content-between mb-3">
-					<a href="/new" class="btn btn-secondary">
+					<a href="/newbook" class="btn btn-secondary">
 						</i> Add New Book
 					</a>
 				</div>
 				<div class="card shadow-lg">
 					<div class="card-body">
-						<table class="table table-bordered table-striped">
+						<table id="bookTable" class="table table-bordered table-striped">
 							<thead class="table-info">
 								<tr>
-									<th>Name</th>
+									<th>Book Name</th>
 									<th>Author</th>
-									<th>Price</th>
-									<th>Published Year</th>
+									<th>ISBN</th>
+									<th>Category</th>
+									<th>Total books</th>
 									<th>Actions</th>
 								</tr>
 							</thead>
 							<tbody>
 								<tr th:each="book : ${books}">
-									<td th:text="${book.name}"></td>
+									<td th:text="${book.title}"></td>
 									<td th:text="${book.author}"></td>
-									<td th:text="${book.price}"></td>
-									<td th:text="${book.publishedYear}"></td>
+									<td th:text="${book.isbn}"></td>
+									<td th:text="${book.category}"></td>
+									<td th:text="${book.totalCopies}"></td>
 									<td>
-										<a th:href="@{bookdetails/{id}(id=${book.bookId})}" class="btn btn-sm btn-warning">
+										<a th:href="@{bookdetails/{id}(id=${book.bookId})}"
+											class="btn btn-sm btn-warning">
 											<i class="fas fa-edit"></i>
 										</a>
 										<a th:href="@{deletebook/{id}(id=${book.bookId})}" class="btn btn-sm btn-danger"
@@ -92,8 +98,8 @@
 
 	<!-- Include Footer -->
 	<div th:replace="~{menu/footer.html}"></div>
-
 	<script>
+		$('#bookTable').DataTable();
 		$(document).ready(function () {
 			$("#toggleSidebar").click(function () {
 				$("#sidebar").toggleClass("hidden");

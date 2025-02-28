@@ -1,0 +1,152 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+	<meta charset="UTF-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+	<title>Register</title>
+	<style>
+		@import url("https://fonts.googleapis.com/css2?family=Open+Sans:wght@200;300;400;500;600;700&display=swap");
+
+		* {
+			margin: 0;
+			padding: 0;
+			box-sizing: border-box;
+			font-family: "Open Sans", sans-serif;
+		}
+
+		body {
+			display: flex;
+			align-items: center;
+			justify-content: center;
+			min-height: 100vh;
+			background: linear-gradient(135deg, #6d83f2, #92e1e4);
+			padding: 0 20px;
+		}
+
+		.wrapper {
+			width: 100%;
+			max-width: 450px;
+			background: #fff;
+			padding: 40px 30px;
+			border-radius: 10px;
+			box-shadow: 0 10px 25px rgba(0, 0, 0, 0.2);
+			text-align: center;
+		}
+
+		h2 {
+			font-size: 2rem;
+			margin-bottom: 1.5em;
+			color: #333;
+		}
+
+		.input-field {
+			position: relative;
+			border-bottom: 2px solid #ddd;
+			margin: 20px 0;
+		}
+
+		.input-field input {
+			width: 100%;
+			padding: 10px 5px;
+			border: none;
+			background: transparent;
+			font-size: 1rem;
+			color: #333;
+			outline: none;
+			transition: all 0.3s ease;
+		}
+
+		.input-field label {
+			position: absolute;
+			left: 5px;
+			top: 10px;
+			color: #999;
+			font-size: 0.9rem;
+			transition: all 0.3s ease;
+		}
+
+		.input-field input:focus~label,
+		.input-field input:valid~label {
+			top: -15px;
+			font-size: 0.8rem;
+			color: #6d83f2;
+		}
+
+		.input-field input:focus {
+			border-bottom-color: #6d83f2;
+		}
+
+		button {
+			width: 100%;
+			background: #6d83f2;
+			color: #fff;
+			font-size: 1rem;
+			font-weight: bold;
+			padding: 10px;
+			border: none;
+			border-radius: 5px;
+			cursor: pointer;
+			transition: background 0.3s ease;
+		}
+
+		button:hover {
+			background: #556bd6;
+		}
+
+		.register {
+			margin-top: 1.5em;
+			font-size: 0.9rem;
+			color: #555;
+		}
+
+		.register a {
+			color: #6d83f2;
+			text-decoration: none;
+			font-weight: bold;
+			transition: color 0.3s ease;
+		}
+
+		.register a:hover {
+			color: #556bd6;
+		}
+	</style>
+</head>
+
+<body>
+	<div class="wrapper">
+		<form method="POST" action="/register">
+			<h2>Register</h2>
+			<div class="input-field">
+				<input type="text" name="fname" required>
+				<label>Enter your First name</label>
+			</div>
+			<div class="input-field">
+				<input type="text" name="mname" required>
+				<label>Enter your Middle name</label>
+			</div>
+			<div class="input-field">
+				<input type="text" name="lname" required>
+				<label>Enter your Last name</label>
+			</div>
+			<div class="input-field">
+				<input type="text" name="mobile" required>
+				<label>Enter your mobile No.</label>
+			</div>
+			<div class="input-field">
+				<input type="text" name="email" required>
+				<label>Enter your email</label>
+			</div>
+			<div class="input-field">
+				<input type="password" name="password" required>
+				<label>Enter your password</label>
+			</div>
+			<button type="submit">Register</button>
+			<div class="register">
+				<p>Already have an account? <a href="/login">Login</a></p>
+			</div>
+		</form>
+	</div>
+</body>
+
+</html>

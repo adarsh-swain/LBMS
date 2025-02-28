@@ -9,5 +9,4 @@ public class LbmsApplication {
 	public static void main(String[] args) {
 		SpringApplication.run(LbmsApplication.class, args);
 	}
-
 }

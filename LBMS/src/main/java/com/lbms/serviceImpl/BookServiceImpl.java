@@ -38,11 +38,12 @@ public class BookServiceImpl implements BookService{
 		Optional<Book> bookIddata = bookRepository.findById(bookid);
 		if(bookIddata.isPresent()) {
 			 Book existingBook = bookIddata.get();
+			 existingBook.setTitle(book.getTitle());
 			 existingBook.setAuthor(book.getAuthor());
-			 existingBook.setName(book.getName());
-			 existingBook.setPrice(book.getPrice());
-			 existingBook.setPublishedYear(book.getPublishedYear());
-			 return bookRepository.save(book);
+			 existingBook.setIsbn(book.getIsbn());
+			 existingBook.setCategory(book.getCategory());
+			 existingBook.setTotalCopies(book.getTotalCopies());
+			 return bookRepository.save(existingBook);
 		}else {
 			return null;
 		}

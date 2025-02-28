@@ -29,21 +29,20 @@ public class BookController {
 		return"books/booklist";
 	}
 	
-	@Transactional
-	@PostMapping("/newbook")
-	public String addBook(@ModelAttribute Book book) {
-		bookService.addnewBook(book);
-		return"redirect:/allbook";
-	}
-	
-	
-	@GetMapping("/new")
+	@GetMapping("/newbook")
     public String showSaveBookForm(Model model) {
         model.addAttribute("book", new Book());
         return "books/addbook";
     }
 	
+	@Transactional
+	@PostMapping("/addnewbook")
+	public String addBook(@ModelAttribute Book book) {
+		bookService.addnewBook(book);
+		return"redirect:/allbook";
+	}
 	
+
 	@GetMapping("/deletebook/{bookId}")
     public String deleteBook(Model model,@PathVariable("bookId") Long bookId) {
 		bookService.deleteBookbyId(bookId);

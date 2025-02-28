@@ -8,31 +8,27 @@ import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PostMapping;
 
 import com.lbms.entity.UserInfo;
-import com.lbms.service.UserService;
+import com.lbms.service.StudentService;
 
 @Controller
-public class LoginController {
+public class StudentController {
 	
 	@Autowired
-	UserService userService;
+	StudentService studentService;
 	
-//	@GetMapping("/index")
-//	public String index(Model model) {
-//		return "menu/index";
-//	}
-	
-	@GetMapping("/index")
+	@GetMapping("/newstudent")
 	public String showRegistrationForm(Model model) {
-		return "login/register";
+		model.addAttribute("student", new UserInfo());
+		return "student/addstudent";
 	}
 
-	
-	@PostMapping("/register")
-	public String registerUser(@ModelAttribute("user") UserInfo userInfo, Model model) {
-		String result = userService.register(userInfo);
+
+	@PostMapping("/studentregister")
+	public String registerStudent(@ModelAttribute("user") UserInfo userInfo, Model model) {
+		String result = studentService.studentRegister(userInfo);
 		model.addAttribute("message", result);
 		return "redirect:/login";
 	}
-
+	
 
 }

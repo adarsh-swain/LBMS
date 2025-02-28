@@ -47,38 +47,41 @@
 
 		<!-- Main Content -->
 		<main id="main-content" class="p-4 w-100 main-content">
+
 			<div class="container mt-5">
 				<div class="card shadow-lg">
 					<div class="card-header bg-info text-white">
-						<h2 class="text-center mb-0">New Book</h2>
+						<h2 class="text-center mb-0">New Student</h2>
 					</div>
 					<div class="card-body">
-						<form th:action="@{/addnewbook}" th:object="${book}" method="post">
-							<div class="mb-3">
-								<label for="title" class="form-label">Book Name:</label>
-								<input type="text" id="title" th:field="*{title}" class="form-control" required>
-							</div>
-
-							<div class="mb-3">
-								<label for="author" class="form-label">Author:</label>
-								<input type="text" id="author" th:field="*{author}" class="form-control">
-							</div>
-
-							<div class="mb-3">
-								<label for="isbn" class="form-label">ISBN:</label>
-								<input type="text" id="isbn" th:field="*{isbn}" class="form-control">
-							</div>
+						<form th:action="@{/studentregister}" th:object="${student}" method="post">
 							
 							<div class="mb-3">
-								<label for="category" class="form-label">Category:</label>
-								<input type="text" id="category" th:field="*{category}" class="form-control">
-							</div>
-							
-							<div class="mb-3">
-								<label for="totalCopies" class="form-label">Total books:</label>
-								<input type="number" id="totalCopies" th:field="*{totalCopies}" class="form-control">
+								<label for="fname" class="form-label">First Name:</label>
+								<input type="text" id="fname" th:field="*{fname}" class="form-control" required>
 							</div>
 
+							<div class="mb-3">
+								<label for="mname" class="form-label">Middle Name:</label>Last name
+								<input type="text" id="mname" th:field="*{mname}" class="form-control">
+							</div>
+
+							<div class="mb-3">
+								<label for="lname" class="form-label">Last Name:</label>
+								<input type="text" id="lname" th:field="*{lname}" class="form-control">
+							</div>
+
+
+							<div class="mb-3">
+								<label for="mobile" class="form-label">Mobile No:</label>
+								<input type="text" id="mobile" th:field="*{mobile}" class="form-control">
+							</div>
+
+							<div class="mb-3">
+								<label for="email" class="form-label">Email:</label>
+								<input type="text" id="email" th:field="*{email}" class="form-control">
+							</div>
+							
 							<div class="text-center">
 								<button type="submit" class="btn btn-success">Submit</button>
 							</div>
@@ -86,6 +89,7 @@
 					</div>
 				</div>
 			</div>
+			
 		</main>
 	</div>
 
@@ -103,5 +107,5 @@
 	</script>
 
 </body>
-</html>
 
+</html>
