@@ -47,15 +47,14 @@
 
 		<!-- Main Content -->
 		<main id="main-content" class="p-4 w-100 main-content">
-
 			<div class="container mt-5">
 				<div class="card shadow-lg">
 					<div class="card-header bg-info text-white">
-						<h2 class="text-center mb-0">New Student</h2>
+						<h2 class="text-center mb-0">Update Student</h2>
 					</div>
 					<div class="card-body">
 						<form th:action="@{/studentregister}" th:object="${student}" method="post">
-							
+
 							<div class="mb-3">
 								<label for="fname" class="form-label">First Name:</label>
 								<input type="text" id="fname" th:field="*{fname}" class="form-control" required>
@@ -81,15 +80,14 @@
 								<label for="email" class="form-label">Email:</label>
 								<input type="text" id="email" th:field="*{email}" class="form-control">
 							</div>
-							
+
 							<div class="text-center">
-								<button type="submit" class="btn btn-success">Submit</button>
+								<button type="submit" class="btn btn-success">Update</button>
 							</div>
 						</form>
 					</div>
 				</div>
 			</div>
-			
 		</main>
 	</div>
 

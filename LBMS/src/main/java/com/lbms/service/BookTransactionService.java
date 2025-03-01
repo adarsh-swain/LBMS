@@ -7,7 +7,7 @@ import com.lbms.entity.BookTransaction;
 
 public interface BookTransactionService {
 
-	BookTransaction issueBook(Long bookId, Long userId);
+	public BookTransaction issueBook(int userId, Long bookId);
 
 	BookTransaction returnBook(Long transactionId);
 

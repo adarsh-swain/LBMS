@@ -30,5 +30,4 @@ public class Book {
 	private int totalCopies;
 	
 	private int availableCopies;
-
 }

@@ -1,7 +1,9 @@
 package com.lbms.serviceImpl;
 
 import java.util.List;
+import java.util.Map;
 import java.util.Optional;
+import java.util.stream.Collectors;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -24,7 +26,6 @@ public class BookServiceImpl implements BookService{
 	@Override
 	public List allBooks() {
 		List allbooks = bookRepository.findAll();
-		allbooks.forEach(book -> System.out.println(book));
 		return allbooks;
 	}
 
@@ -54,5 +55,9 @@ public class BookServiceImpl implements BookService{
 		 Optional<Book> bookDetails = bookRepository.findById(bookid);
 		return bookDetails;
 	}
+
+	public List<Map<String, Object>> getBookIdAndName() {
+        return bookRepository.getBookIdAndName();
+    }
 
 }
