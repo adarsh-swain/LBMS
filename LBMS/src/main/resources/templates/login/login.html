@@ -1,0 +1,164 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>LMS</title>
+  <style>
+    @import url("https://fonts.googleapis.com/css2?family=Open+Sans:wght@300;400;600&display=swap");
+
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+      font-family: "Open Sans", sans-serif;
+    }
+
+    body {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      flex-direction: column;
+      min-height: 100vh;
+      background: linear-gradient(to right, #6a11cb, #2575fc);
+      padding: 20px;
+      color: #fff;
+    }
+
+    .title {
+      font-size: 2rem;
+      font-weight: 600;
+      margin-bottom: 20px;
+      text-align: center;
+    }
+
+    .wrapper {
+      width: 400px;
+      padding: 30px;
+      border-radius: 10px;
+      background: rgba(255, 255, 255, 0.1);
+      backdrop-filter: blur(10px);
+      box-shadow: 0 4px 15px rgba(0, 0, 0, 0.2);
+      text-align: center;
+    }
+
+    .logo {
+      width: 120px;
+      margin-bottom: 15px;
+    }
+
+    h2 {
+      font-size: 1.8rem;
+      margin-bottom: 15px;
+    }
+
+    .input-field {
+      position: relative;
+      margin: 20px 0;
+    }
+
+    .input-field input {
+      width: 100%;
+      padding: 12px;
+      border: none;
+      border-radius: 5px;
+      font-size: 16px;
+      outline: none;
+      background: rgba(255, 255, 255, 0.2);
+      color: #fff;
+    }
+
+    .input-field input::placeholder {
+      color: #ddd;
+    }
+
+    .forget {
+      display: flex;
+      justify-content: space-between;
+      font-size: 14px;
+      margin: 15px 0;
+    }
+
+    .forget a {
+      color: #f1f1f1;
+      text-decoration: none;
+    }
+
+    .forget a:hover {
+      text-decoration: underline;
+    }
+
+    button {
+      width: 100%;
+      padding: 12px;
+      border: none;
+      border-radius: 5px;
+      background: #fff;
+      color: #2575fc;
+      font-size: 16px;
+      font-weight: bold;
+      cursor: pointer;
+      transition: 0.3s;
+    }
+
+    button:hover {
+      background: #f1f1f1;
+    }
+
+    .register {
+      margin-top: 15px;
+      font-size: 14px;
+    }
+
+    .register a {
+      color: #fff;
+      text-decoration: none;
+      font-weight: bold;
+    }
+
+    .register a:hover {
+      text-decoration: underline;
+    }
+    
+    .title {
+    font-size: 2rem; /* Large and prominent */
+    font-weight: bold;
+    color: #fff; /* White text */
+    text-align: center;
+    background: linear-gradient(135deg, #6d83f2, #92e1e4);
+    padding: 25px 250px;
+    border-radius: 10px;
+    box-shadow: 0 5px 15px rgba(0, 0, 0, 0.2);
+    width: fit-content;
+    margin: 20px auto; /* Center the title */
+}
+
+  </style>
+</head>
+<body>
+  <div class="title">Library Management System</div>
+  &nbsp;&nbsp;
+  <div class="wrapper">
+    <img src="/images/library.png" alt="Library Logo" class="logo">
+    <form method="POST" action="/loginreq">
+      <h2>Login</h2>
+      <div class="input-field">
+        <input type="text" name="username" placeholder="Enter your email" required>
+      </div>
+      <div class="input-field">
+        <input type="password" name="password" placeholder="Enter your password" required>
+      </div>
+      <div class="forget">
+        <label>
+          <input type="checkbox" name="remember"> Remember me
+        </label>
+        <a href="#">Forgot password?</a>
+      </div>
+      <button type="submit">Log In</button>
+      <div class="register">
+        Don't have an account? <a href="/index">Register</a>
+      </div>
+    </form>
+  </div>
+</body>
+</html>

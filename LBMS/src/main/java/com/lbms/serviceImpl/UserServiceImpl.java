@@ -1,6 +1,7 @@
 package com.lbms.serviceImpl;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Service;
 
 import com.lbms.entity.UserInfo;
@@ -12,10 +13,13 @@ public class UserServiceImpl implements UserService{
 	
 	@Autowired
 	UserRepository userRepository;
+	
+	@Autowired
+	PasswordEncoder passwordEncoder;
 
 	@Override
 	public String register(UserInfo userInfo) {
-//		userInfo.setPassword(passwordEncoder.encode(userInfo.getPassword()));
+		userInfo.setPassword(passwordEncoder.encode(userInfo.getPassword()));
 		userInfo.setRoles("ROLE_ADMIN");
 		userRepository.save(userInfo);
 		return "Register SuccesFully";

@@ -1,6 +1,7 @@
 package com.lbms.repository;
 
 import java.util.List;
+import java.util.Optional;
 
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.data.jpa.repository.Query;
@@ -23,5 +24,7 @@ public interface UserRepository extends JpaRepository<UserInfo, Integer>{
 	@Query(value = "SELECT u.* FROM users u " + "INNER JOIN book_transactions bt ON u.id = bt.user_id "
 			+ "WHERE u.roles = :role", nativeQuery = true)
 	List<UserInfo> findUsersByRole(@Param("role") String role);
+	
+	Optional<UserInfo>findByEmail(String email);
 
 }
