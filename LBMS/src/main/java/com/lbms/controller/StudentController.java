@@ -29,6 +29,7 @@ public class StudentController {
 	@GetMapping("/allstudent")
 	public String allBooks(Model model) {
 		List allstudents = studentService.allStudent();
+		System.out.println(allstudents);
 		model.addAttribute("allstudents", allstudents);
 		return"student/studentlist";
 	}

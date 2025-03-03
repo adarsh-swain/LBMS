@@ -4,6 +4,7 @@ import java.util.List;
 import java.util.Optional;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Service;
 
 import com.lbms.entity.Book;
@@ -16,11 +17,14 @@ public class StudentServiceImpl implements StudentService {
 
 	@Autowired
 	UserRepository userRepository;
+	
+	@Autowired
+	PasswordEncoder passwordEncoder;
 
 	@Override
 	public String studentRegister(UserInfo userInfo) {
-//		userInfo.setPassword(passwordEncoder.encode(userInfo.getPassword()));
-		userInfo.setPassword("lbms@1");
+		userInfo.setPassword(passwordEncoder.encode("lbms@1"));
+//		userInfo.setPassword("lbms@1");
 		userInfo.setRoles("ROLE_STUDENT");
 		userInfo.setStatus(1);
 		userRepository.save(userInfo);
@@ -29,7 +33,8 @@ public class StudentServiceImpl implements StudentService {
 	
 	@Override
 	public List allStudent() {
-		List allstudents = userRepository.findUsersByRole("ROLE_STUDENT");
+		List allstudents = userRepository.findByRole("ROLE_STUDENT");
+		System.out.println(allstudents+"dsnj");
 		return allstudents;
 	}
 

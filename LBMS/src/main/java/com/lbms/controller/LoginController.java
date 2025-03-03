@@ -116,6 +116,12 @@ public class LoginController {
 		model.addAttribute("user", new UserInfo());
 		return "login/permission";
 	}
+	
+	 @GetMapping("/logout")
+	    public String logout(HttpSession session) {
+	        session.invalidate();
+	        return "redirect:/login?logout";
+	    }
 
 
 //	@GetMapping("/dashboard")
