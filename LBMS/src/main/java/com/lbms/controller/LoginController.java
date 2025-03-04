@@ -17,7 +17,10 @@ import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.ModelAttribute;
+import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.PutMapping;
+import org.springframework.web.bind.annotation.RequestParam;
 
 import com.lbms.dto.LoginRequest;
 import com.lbms.entity.UserInfo;
@@ -89,7 +92,7 @@ public class LoginController {
 					UserInfo userInfo = userInfoOpt.get();
 					int status = userInfo.getStatus();
 
-					if (roles.contains("ROLE_USER")) {
+					if (roles.contains("ROLE_STUDENT")) {
 						if (status == 1) {
 							return "redirect:/dashboard";
 						} else {
@@ -124,31 +127,31 @@ public class LoginController {
 	    }
 
 
-//	@GetMapping("/dashboard")
-//	public String showDash(Model model) {
-//		return "dashboard";
-//	}
-//
-//	@GetMapping("/allUser")
-//	public String showAllUsers(@ModelAttribute("token") String token, Model model) {
-//		System.out.println("Token: ");
-//		List<UserInfo> users = userService.allUser();
-//		model.addAttribute("users", users);
-//		return "alluser";
-//	}
-//
-//	@PutMapping("/updateRole")
-//	public String updateType(@RequestParam String roles, @RequestParam int id, Model model) {
-//		System.out.println("Received id: " + id + ", roles: " + roles);
-//		userService.updateRole(id, roles);
-//		return "redirect:/allUser";
-//	}
-//
-//	@PutMapping("/updateStatus/{id}/{status}")
-//	public String updateLoginStatus(@PathVariable int id, @PathVariable int status, Model model) {
-//		userService.updateLoginStatus(id, status);
-//		return "redirect:/alluser";
-//	}
-//
+	@GetMapping("/dashboard")
+	public String showDash(Model model) {
+		return "student/studentdashboard";
+	}
+
+	@GetMapping("/allUser")
+	public String showAllUsers(@ModelAttribute("token") String token, Model model) {
+		System.out.println("Token: ");
+		List<UserInfo> users = userService.allUser();
+		model.addAttribute("users", users);
+		return "alluser";
+	}
+
+	@PutMapping("/updateRole")
+	public String updateType(@RequestParam String roles, @RequestParam int id, Model model) {
+		System.out.println("Received id: " + id + ", roles: " + roles);
+		userService.updateRole(id, roles);
+		return "redirect:/allUser";
+	}
+
+	@PutMapping("/updateStatus/{id}/{status}")
+	public String updateLoginStatus(@PathVariable int id, @PathVariable int status, Model model) {
+		userService.updateLoginStatus(id, status);
+		return "redirect:/alluser";
+	}
+
 
 }

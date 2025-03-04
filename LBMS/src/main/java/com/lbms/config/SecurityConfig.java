@@ -32,8 +32,9 @@ public class SecurityConfig {
 	    http.csrf(csrf -> csrf.disable())
 	        .authorizeHttpRequests(auth -> auth
 	            .requestMatchers(AppConstants.BASE_API_URL).permitAll()
-	            .requestMatchers(AppConstants.USER_DASHBOARD_URL).hasAnyAuthority("ROLE_USER")
-	            .requestMatchers(AppConstants.ADMIN_URL).hasAnyAuthority("ROLE_ADMIN")     
+	            .requestMatchers(AppConstants.STUDENT_URL).hasAnyAuthority("ROLE_STUDENT")
+	            .requestMatchers(AppConstants.ADMIN_URL).hasAnyAuthority("ROLE_ADMIN")  
+	            .requestMatchers(AppConstants.ADMIN_URL).hasAnyAuthority("ROLE_LIBRARIAN")
 	            .anyRequest().authenticated())
 	        .sessionManagement(session->session.sessionCreationPolicy(SessionCreationPolicy.STATELESS))
               .authenticationProvider(authenticationProvider())

@@ -1,0 +1,144 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+
+<head>
+    <title>LMS</title>
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css">
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+    <link rel="stylesheet" href="https://cdn.datatables.net/1.13.6/css/jquery.dataTables.min.css">
+    <script src="https://cdn.datatables.net/1.13.6/js/jquery.dataTables.min.js"></script>
+</head>
+
+<style>
+    .sidebar {
+        width: 250px;
+        transition: transform 0.3s ease-in-out;
+    }
+
+    .sidebar.hidden {
+        transform: translateX(-250px);
+    }
+
+    .main-content {
+        transition: margin-left 0.3s ease-in-out;
+    }
+
+    .expanded {
+        margin-left: 0px !important;
+    }
+
+    /* Top Menu Styling */
+    .navbar {
+        transition: width 0.3s ease-in-out;
+    }
+
+    .navbar.full-width {
+        width: 100% !important;
+    }
+</style>
+
+<body>
+    <!-- Include Header (Top Menu) -->
+    <div th:replace="~{menu/top_menu.html}"></div>
+
+    <div class="d-flex">
+        <!-- Sidebar -->
+        <div id="sidebar" class="sidebar bg-light">
+            <div th:replace="~{menu/sidebar.html}"></div>
+        </div>
+
+        <!-- Main Content -->
+        <main id="main-content" class="p-4 w-100 main-content">
+            <div class="container mt-5">
+                <div class="card shadow-lg">
+                    <div class="card-body">
+                        <table id="bookTable" class="table table-bordered table-striped">
+                            <thead class="table-info">
+                                <tr>
+                                    <th>Student Name</th>
+                                    <th>Email</th>
+                                    <th>Mobile</th>
+                                    <th>Book Name</th>
+                                    <th>ISBN</th>
+                                    <th>Due Date</th>
+                                    <th>Issue Date</th>
+                                    <th>Return Book</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <tr th:each="trans : ${transactions}">
+                                    <td th:text="${trans.fullName}"></td>
+                                    <td th:text="${trans.email}"></td>
+                                    <td th:text="${trans.mobile}"></td>
+                                    <td th:text="${trans.title}"></td>
+                                    <td th:text="${trans.isbn}"></td>
+                                    <td th:text="${#dates.format(trans.dueDate, 'yyyy-MM-dd')}"></td>
+                                    <td th:text="${#dates.format(trans.issueDate, 'yyyy-MM-dd')}"></td>
+                                    <td>
+                                        <button class="btn btn-warning btn-sm"
+                                            th:onclick="openReturnModal([[${trans.transId}]])">
+                                            <i class="fas fa-undo"></i> Return
+                                        </button>
+                                    </td>
+                                </tr>
+                            </tbody>
+                        </table>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Return Book Modal -->
+            <div class="modal fade" id="returnBookModal" tabindex="-1" aria-labelledby="returnBookModalLabel"
+                aria-hidden="true">
+                <div class="modal-dialog">
+                    <div class="modal-content">
+                        <div class="modal-header bg-info text-white">
+                            <h5 class="modal-title" id="returnBookModalLabel">Return Book</h5>
+                            <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                        </div>
+                        <div class="modal-body">
+                            <form id="returnBookForm" th:action="@{/return}" method="post">
+                                <!-- Hidden Transaction ID -->
+                                <input type="hidden" id="transactionId" name="transactionId" />
+
+                                <div class="mb-3">
+                                    <label for="returnDate" class="form-label">Return Date:</label>
+                                    <input type="date" id="returnDate" name="returnDate" class="form-control" required />
+                                </div>
+
+                                <div class="text-center">
+                                    <button type="submit" class="btn btn-success">Submit</button>
+                                </div>
+                            </form>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </main>
+    </div>
+
+    <!-- Include Footer -->
+    <div th:replace="~{menu/footer.html}"></div>
+
+    <script>
+        $(document).ready(function () {
+            $('#bookTable').DataTable();
+
+            $("#toggleSidebar").click(function () {
+                $("#sidebar").toggleClass("hidden");
+                $("#main-content").toggleClass("expanded");
+                $("#topMenu").toggleClass("full-width");
+            });
+        });
+
+        function openReturnModal(transactionId) {
+            $("#transactionId").val(transactionId); // Set transaction ID in hidden input
+            $("#returnBookModal").modal("show"); // Open modal
+        }
+    </script>
+
+</body>
+
+</html>
