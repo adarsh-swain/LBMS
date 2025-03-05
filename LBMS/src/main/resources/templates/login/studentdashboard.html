@@ -9,7 +9,6 @@
 	<style>
 		body {
 			padding-top: 56px;
-			/* Space for the fixed navbar */
 		}
 
 		.sidebar {
@@ -40,7 +39,6 @@
 
 		.content-expanded {
 			margin-left: 0;
-			/* Adjust content margin when sidebar is hidden */
 		}
 
 		.navbar {
@@ -51,7 +49,6 @@
 
 		.navbar-expanded {
 			margin-left: 0;
-			/* Move navbar when sidebar is open */
 		}
 
 		.navbar-toggler {
@@ -59,7 +56,6 @@
 			top: 15px;
 			left: 15px;
 			z-index: 1030;
-			/* Ensure the button is above other content */
 		}
 
 
@@ -87,7 +83,7 @@
 			<div class="collapse navbar-collapse" id="navbarNav">
 				<ul class="navbar-nav">
 					<li class="nav-item">
-						<a class="nav-link active" aria-current="page" th:href="@{/allbook}">Book List</a>
+						<a class="nav-link active" aria-current="page" th:href="@{/booklist}">Book List</a>
 					</li>
 				</ul>
 

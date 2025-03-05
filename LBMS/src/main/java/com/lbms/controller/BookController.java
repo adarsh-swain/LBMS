@@ -73,4 +73,13 @@ public class BookController {
 	public List<Map<String, Object>> allBookDetails() {
 		return bookService.getBookIdAndName();
 	}
+	
+	@GetMapping("/booklist")
+	public String allStudentBooks(Model model) {
+		List allBooks = bookService.allBooks();
+		model.addAttribute("books", allBooks);
+		return "student/studentbooklist";
+	}
+	
+	
 }

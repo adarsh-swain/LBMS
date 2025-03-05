@@ -72,10 +72,10 @@ public class LoginController {
 	@PostMapping("/loginreq")
 	public String authenticationAndGetToken(@ModelAttribute("user") LoginRequest authRequest, Model model,
 			HttpSession session) {
+		System.out.println("Authenticated Roles: ");
 		try {
 			Authentication authentication = authenticationManager.authenticate(
 					new UsernamePasswordAuthenticationToken(authRequest.getUsername(), authRequest.getPassword()));
-
 			if (authentication.isAuthenticated()) {
 				List<String> roles = authentication.getAuthorities().stream().map(GrantedAuthority::getAuthority)
 						.collect(Collectors.toList());
@@ -98,7 +98,13 @@ public class LoginController {
 						} else {
 							return "redirect:/permission";
 						}
-					} else if (roles.contains("ROLE_ADMIN") || roles.contains("ROLE_LIBRARIAN")) {
+					}else if(roles.contains("ROLE_LIBRARIAN")) {
+						if (status == 1) {
+							return "redirect:/allbook";
+						} else {
+							return "redirect:/permission";
+						}
+					}else if (roles.contains("ROLE_ADMIN")) {
 						return "redirect:/allbook";
 					} else {
 						return "redirect:/login";
@@ -126,18 +132,16 @@ public class LoginController {
 	        return "redirect:/login?logout";
 	    }
 
-
 	@GetMapping("/dashboard")
 	public String showDash(Model model) {
-		return "student/studentdashboard";
+		return "login/studentdashboard";
 	}
 
 	@GetMapping("/allUser")
 	public String showAllUsers(@ModelAttribute("token") String token, Model model) {
-		System.out.println("Token: ");
 		List<UserInfo> users = userService.allUser();
 		model.addAttribute("users", users);
-		return "alluser";
+		return "login/alluser";
 	}
 
 	@PutMapping("/updateRole")
@@ -148,10 +152,9 @@ public class LoginController {
 	}
 
 	@PutMapping("/updateStatus/{id}/{status}")
-	public String updateLoginStatus(@PathVariable int id, @PathVariable int status, Model model) {
+	public String updateLoginStatus(@PathVariable("id") int id, @PathVariable ("status") int status, Model model) {
+		System.out.println("hello");
 		userService.updateLoginStatus(id, status);
 		return "redirect:/alluser";
 	}
-
-
 }

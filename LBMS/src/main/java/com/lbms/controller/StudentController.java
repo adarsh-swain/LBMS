@@ -72,7 +72,5 @@ public class StudentController {
 		studentService.updateStudentById(userId, userInfo);
 		    return "redirect:/allstudent";
     }
-	
-	
 
 }

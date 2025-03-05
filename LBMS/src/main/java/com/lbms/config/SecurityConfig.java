@@ -33,8 +33,7 @@ public class SecurityConfig {
 	        .authorizeHttpRequests(auth -> auth
 	            .requestMatchers(AppConstants.BASE_API_URL).permitAll()
 	            .requestMatchers(AppConstants.STUDENT_URL).hasAnyAuthority("ROLE_STUDENT")
-	            .requestMatchers(AppConstants.ADMIN_URL).hasAnyAuthority("ROLE_ADMIN")  
-	            .requestMatchers(AppConstants.ADMIN_URL).hasAnyAuthority("ROLE_LIBRARIAN")
+	            .requestMatchers(AppConstants.ADMIN_URL).hasAnyAuthority("ROLE_ADMIN", "ROLE_LIBRARIAN")
 	            .anyRequest().authenticated())
 	        .sessionManagement(session->session.sessionCreationPolicy(SessionCreationPolicy.STATELESS))
               .authenticationProvider(authenticationProvider())

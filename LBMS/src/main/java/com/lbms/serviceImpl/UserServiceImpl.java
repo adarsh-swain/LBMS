@@ -52,6 +52,7 @@ public class UserServiceImpl implements UserService {
 				.orElseThrow(() -> new UserNotFoundException("User with ID \" + id + \" not found."));
 		user.setStatus(status);
 		userRepository.save(user);
+		System.out.println("hello1");
 		return "Status updated";
 	}
 
