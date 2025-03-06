@@ -31,6 +31,7 @@ public class SecurityConfig {
 	public SecurityFilterChain filterChain(HttpSecurity http) throws Exception {
 	    http.csrf(csrf -> csrf.disable())
 	        .authorizeHttpRequests(auth -> auth
+	        	.requestMatchers("/login", "/error", "/403").permitAll()
 	            .requestMatchers(AppConstants.BASE_API_URL).permitAll()
 	            .requestMatchers(AppConstants.STUDENT_URL).hasAnyAuthority("ROLE_STUDENT")
 	            .requestMatchers(AppConstants.ADMIN_URL).hasAnyAuthority("ROLE_ADMIN", "ROLE_LIBRARIAN")

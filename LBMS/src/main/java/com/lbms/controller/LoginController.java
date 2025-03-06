@@ -106,7 +106,9 @@ public class LoginController {
 						}
 					}else if (roles.contains("ROLE_ADMIN")) {
 						return "redirect:/allbook";
-					} else {
+					} else if (roles.contains("ROLE_USER")) {
+						return "redirect:/permission";
+					}else {
 						return "redirect:/login";
 					}
 				}
@@ -144,8 +146,8 @@ public class LoginController {
 		return "login/alluser";
 	}
 
-	@PutMapping("/updateRole")
-	public String updateType(@RequestParam String roles, @RequestParam int id, Model model) {
+	@PostMapping("/updateRole")
+	public String updateType(@RequestParam ("roles")String roles, @RequestParam ("id")int id, Model model) {
 		System.out.println("Received id: " + id + ", roles: " + roles);
 		userService.updateRole(id, roles);
 		return "redirect:/allUser";

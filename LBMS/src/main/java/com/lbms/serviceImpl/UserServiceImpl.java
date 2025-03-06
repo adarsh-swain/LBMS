@@ -24,7 +24,7 @@ public class UserServiceImpl implements UserService {
 	@Override
 	public String register(UserInfo userInfo) {
 		userInfo.setPassword(passwordEncoder.encode(userInfo.getPassword()));
-		userInfo.setRoles("ROLE_ADMIN");
+		userInfo.setRoles("ROLE_USER");
 		userRepository.save(userInfo);
 		return "Register SuccesFully";
 	}
