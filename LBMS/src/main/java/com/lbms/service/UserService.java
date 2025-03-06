@@ -13,5 +13,7 @@ public interface UserService {
 	public List<UserInfo> allUser();
 
 	public String updateLoginStatus(int id, int status);
+	
+//	public boolean updateUserPassword(String email, String newPassword);
 
 }

@@ -4,11 +4,14 @@ import java.util.List;
 import java.util.Optional;
 
 import org.springframework.data.jpa.repository.JpaRepository;
+import org.springframework.data.jpa.repository.Modifying;
 import org.springframework.data.jpa.repository.Query;
 import org.springframework.data.repository.query.Param;
 import org.springframework.stereotype.Repository;
 
 import com.lbms.entity.UserInfo;
+
+import jakarta.transaction.Transactional;
 
 @Repository
 public interface UserRepository extends JpaRepository<UserInfo, Integer>{
@@ -30,5 +33,10 @@ public interface UserRepository extends JpaRepository<UserInfo, Integer>{
 	List<UserInfo> findByRole(@Param("role") String role);
 
 	Optional<UserInfo>findByEmail(String email);
+	
+//	@Modifying
+//    @Transactional
+//    @Query("UPDATE User u SET u.password = :password WHERE u.email = :email")
+//    int updatePasswordByEmail(@Param("password") String password, @Param("email") String email);
 
 }

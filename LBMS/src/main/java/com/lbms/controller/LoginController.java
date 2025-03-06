@@ -5,6 +5,7 @@ import java.util.Optional;
 import java.util.stream.Collectors;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.security.authentication.AuthenticationManager;
 import org.springframework.security.authentication.UsernamePasswordAuthenticationToken;
 import org.springframework.security.core.Authentication;
@@ -21,6 +22,7 @@ import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.PutMapping;
 import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
 import com.lbms.dto.LoginRequest;
 import com.lbms.entity.UserInfo;
@@ -140,6 +142,7 @@ public class LoginController {
 	}
 
 	@GetMapping("/allUser")
+	@PreAuthorize("hasAuthority('ROLE_ADMIN')")
 	public String showAllUsers(@ModelAttribute("token") String token, Model model) {
 		List<UserInfo> users = userService.allUser();
 		model.addAttribute("users", users);
@@ -159,4 +162,18 @@ public class LoginController {
 		userService.updateLoginStatus(id, status);
 		return "redirect:/alluser";
 	}
+	
+	
+//	@PostMapping("/update-password")
+//    public String updatePassword(@RequestParam String email, 
+//                                 @RequestParam String newPassword, 
+//                                 RedirectAttributes redirectAttributes) {
+//        boolean isUpdated = userService.updateUserPassword(email, newPassword);
+//        if (isUpdated) {
+//            redirectAttributes.addFlashAttribute("success", "Password updated successfully!");
+//        } else {
+//            redirectAttributes.addFlashAttribute("error", "User not found or password update failed.");
+//        }
+//        return "redirect:/users/update-password";
+//    }
 }

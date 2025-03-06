@@ -55,5 +55,11 @@ public class UserServiceImpl implements UserService {
 		System.out.println("hello1");
 		return "Status updated";
 	}
+	
+//	  @Override
+//	  public boolean updateUserPassword(String email, String newPassword) {
+//	        int updatedRows = userRepository.updatePasswordByEmail(newPassword, email);
+//	        return updatedRows > 0;
+//	    }
 
 }

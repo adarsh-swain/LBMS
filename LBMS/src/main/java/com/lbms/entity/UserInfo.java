@@ -1,5 +1,6 @@
 package com.lbms.entity;
 
+import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
@@ -11,12 +12,12 @@ import lombok.Data;
 import lombok.NoArgsConstructor;
 
 @Entity
-@Table(name="users")
+@Table(name = "users")
 @Data
 @AllArgsConstructor
 @NoArgsConstructor
 public class UserInfo {
-	
+
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private int id;
@@ -26,13 +27,14 @@ public class UserInfo {
 	@NotBlank
 	private String lname;
 	@NotBlank
+//	@Column(unique = true)
 	private String email;
 	@NotBlank
 	private String password;
 	@NotBlank
 	private String mobile;
 	private String roles;
-	
+
 	private int status;
 
 }
